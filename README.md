@@ -19,8 +19,8 @@ Project Structure:
         -public
         -src
             -components
-            -context
             -logic
+            -provider
             -utils
             -index.js
         -.env
