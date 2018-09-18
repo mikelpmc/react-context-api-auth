@@ -1,6 +1,6 @@
 # React Context API Demo
 
-Basic demo to show the usage of the React context API with authenticate
+Basic demo to show the usage of the React context API with authenticate flow
 
 Project Structure:
 
