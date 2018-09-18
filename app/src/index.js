@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
-import { AuthProvider } from './context/';
+import AuthProvider from './provider/';
 
 ReactDOM.render(
     <AuthProvider>

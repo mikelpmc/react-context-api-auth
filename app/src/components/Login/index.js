@@ -1,37 +1,36 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { AuthConsumer } from './../../context/';
+import withState from './../../utils/withState';
 
-const Login = () => {
+const Login = ({ store, actions }) => {
     return (
-        <AuthConsumer>
-            {context => (
-                <React.Fragment>
-                    {context.state.error && <p>{context.state.error}</p>}
-                    <form onSubmit={context.onLogin}>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="text"
-                            value={context.state.email || ''}
-                            name="email"
-                            onChange={e => context.handleChange(e)}
-                        />
-                        <br />
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            value={context.state.password || ''}
-                            name="password"
-                            onChange={e => context.handleChange(e)}
-                        />
-                        <br />
-                        <input type="submit" value="Login" />
-                    </form>
-                </React.Fragment>
-            )}
-        </AuthConsumer>
+        <React.Fragment>
+            {store.error && <p>{store.error}</p>}
+
+            <form onSubmit={actions.onLogin}>
+                <label htmlFor="email">Email</label>
+                <input
+                    type="text"
+                    value={store.email || ''}
+                    name="email"
+                    onChange={e => actions.handleChange(e)}
+                />
+                <br />
+
+                <label htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    value={store.password || ''}
+                    name="password"
+                    onChange={e => actions.handleChange(e)}
+                />
+                <br />
+
+                <input type="submit" value="Login" />
+            </form>
+        </React.Fragment>
     );
 };
 
-export default withRouter(Login);
+export default withRouter(withState(Login));

@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { AuthConsumer } from './../context/';
+
+import withState from './withState';
 
 class PrivateRoute extends Component {
     render() {
-        const { component: Component, ...rest } = this.props;
+        const {
+            store: { isLoggedIn },
+            component: Component,
+            redirectTo = '/',
+            ...rest
+        } = this.props;
 
         return (
-            <AuthConsumer>
-                {context => (
-                    <Route
-                        render={props =>
-                            context.state.isLoggedIn ? (
-                                <Component {...props} />
-                            ) : (
-                                <Redirect to="/" />
-                            )
-                        }
-                        {...rest}
-                    />
-                )}
-            </AuthConsumer>
+            <Route
+                render={props =>
+                    isLoggedIn ? (
+                        <Component {...props} />
+                    ) : (
+                        <Redirect to={redirectTo} />
+                    )
+                }
+                {...rest}
+            />
         );
     }
 }
 
-export default PrivateRoute;
+export default withState(PrivateRoute);

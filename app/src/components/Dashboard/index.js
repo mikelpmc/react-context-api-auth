@@ -1,34 +1,28 @@
 import React, { Component } from 'react';
-import { AuthConsumer } from './../../context/';
+import withState from './../../utils/withState';
 
 class Dashboard extends Component {
     componentDidMount() {
-        this.props.context.retrieveUser();
+        this.props.actions.retrieveUser();
     }
 
     render() {
-        const { user } = this.props.context.state;
+        const { user } = this.props.store;
 
         return (
             <React.Fragment>
                 <h1>Dashboard</h1>
-                {user && (
+                {Object.keys(user).length > 0 ? (
                     <React.Fragment>
                         <p>Name: {user.name || 'No name'}</p>
                         <p>Email: {user.email || 'No email'}</p>
                     </React.Fragment>
+                ) : (
+                    'Loading user info...'
                 )}
             </React.Fragment>
         );
     }
 }
 
-const WrappedComponent = () => {
-    return (
-        <AuthConsumer>
-            {context => <Dashboard context={context} />}
-        </AuthConsumer>
-    );
-};
-
-export default WrappedComponent;
+export default withState(Dashboard);

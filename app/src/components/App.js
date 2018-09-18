@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import { AuthConsumer } from './../context/';
+import withState from './../utils/withState';
+
 import PrivateRoute from './../utils/PrivateRoute';
 
 import Header from './Header/';
@@ -12,46 +13,43 @@ import Register from './Register/';
 
 class App extends Component {
     render() {
+        const {
+            store: { isLoggedIn }
+        } = this.props;
+
         return (
             <div className="App">
                 <Header />
 
                 <Switch>
-                    <AuthConsumer>
-                        {context => (
-                            <React.Fragment>
-                                <Route exact path="/" component={Landing} />
-                                <PrivateRoute
-                                    path="/dashboard"
-                                    component={Dashboard}
-                                />
-                                <Route
-                                    path="/login"
-                                    render={() =>
-                                        context.state.isLoggedIn ? (
-                                            <Redirect to="/dashboard" />
-                                        ) : (
-                                            <Login />
-                                        )
-                                    }
-                                />
-                                <Route
-                                    path="/register"
-                                    render={() =>
-                                        context.state.isLoggedIn ? (
-                                            <Redirect to="/dashboard" />
-                                        ) : (
-                                            <Register />
-                                        )
-                                    }
-                                />
-                            </React.Fragment>
-                        )}
-                    </AuthConsumer>
+                    <React.Fragment>
+                        <Route exact path="/" component={Landing} />
+                        <PrivateRoute path="/dashboard" component={Dashboard} />
+                        <Route
+                            path="/login"
+                            render={() =>
+                                isLoggedIn ? (
+                                    <Redirect to="/dashboard" />
+                                ) : (
+                                    <Login />
+                                )
+                            }
+                        />
+                        <Route
+                            path="/register"
+                            render={() =>
+                                isLoggedIn ? (
+                                    <Redirect to="/dashboard" />
+                                ) : (
+                                    <Register />
+                                )
+                            }
+                        />
+                    </React.Fragment>
                 </Switch>
             </div>
         );
     }
 }
 
-export default App;
+export default withState(App);
