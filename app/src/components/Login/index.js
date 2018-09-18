@@ -1,35 +1,42 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import withState from './../../utils/withState';
 
+import './index.css';
+
 const Login = ({ store, actions }) => {
     return (
-        <React.Fragment>
-            {store.error && <p>{store.error}</p>}
+        <div className="login">
+            <h1 className="login__title">Login</h1>
 
-            <form onSubmit={actions.onLogin}>
-                <label htmlFor="email">Email</label>
+            {store.error && <p className="login__error">{store.error}</p>}
+
+            <form className="login__form" onSubmit={actions.onLogin}>
                 <input
                     type="text"
                     value={store.email || ''}
                     name="email"
                     onChange={e => actions.handleChange(e)}
+                    placeholder="Enter your email"
                 />
                 <br />
 
-                <label htmlFor="password">Password</label>
                 <input
                     type="password"
                     value={store.password || ''}
                     name="password"
                     onChange={e => actions.handleChange(e)}
+                    placeholder="Enter your password"
                 />
                 <br />
 
-                <input type="submit" value="Login" />
+                <button className="login__button" type="submit">
+                    Login
+                </button>
+                <Link to="/register">Register</Link>
             </form>
-        </React.Fragment>
+        </div>
     );
 };
 

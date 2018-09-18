@@ -1,0 +1,13 @@
+.dashboard {
+    display: grid;
+    grid-template-areas: 'title' 'info';
+    text-align: center;
+}
+
+.dashboard__title {
+    grid-area: title;
+}
+
+.dashboard__info {
+    grid-area: info;
+}

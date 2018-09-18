@@ -101,7 +101,7 @@ const logic = {
      */
     login(email, password) {
         return Promise.resolve().then(() => {
-            this._validateStringField('email', email);
+            this._validateEmail(email);
             this._validateStringField('password', password);
 
             return fetch(`${this._url}/authenticate`, {

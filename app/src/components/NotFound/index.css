@@ -1,0 +1,13 @@
+.notFound {
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    justify-content: center;
+}
+
+.notFound__title {
+    font-size: 2.5em;
+}
+
+.notFound__image {
+    height: 250px;
+}

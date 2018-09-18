@@ -1,44 +1,51 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import withState from './../../utils/withState';
 
+import './index.css';
+
 const Register = ({ store, actions }) => {
     return (
-        <React.Fragment>
-            {store.error && <p>{store.error}!</p>}
+        <div className="register">
+            <h1 className="register__title">Register</h1>
 
-            <form onSubmit={actions.onRegister}>
-                <label htmlFor="name">Name</label>
+            {store.error && <p className="register__error">{store.error}!</p>}
+
+            <form className="register__form" onSubmit={actions.onRegister}>
                 <input
                     type="text"
                     value={store.name}
                     name="name"
                     onChange={e => actions.handleChange(e)}
+                    placeholder="Enter your name"
                 />
                 <br />
 
-                <label htmlFor="email">Email</label>
                 <input
                     type="text"
                     value={store.email}
                     name="email"
                     onChange={e => actions.handleChange(e)}
+                    placeholder="Enter your email"
                 />
                 <br />
 
-                <label htmlFor="password">Password</label>
                 <input
                     type="password"
                     value={store.password}
                     name="password"
                     onChange={e => actions.handleChange(e)}
+                    placeholder="Enter your password"
                 />
                 <br />
 
-                <input type="submit" value="Register" />
+                <button className="register__button" type="submit">
+                    Register
+                </button>
+                <Link to="/login">Login</Link>
             </form>
-        </React.Fragment>
+        </div>
     );
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
 import withState from './../utils/withState';
 
@@ -10,8 +10,21 @@ import Dashboard from './Dashboard/';
 import Landing from './Landing/';
 import Login from './Login/';
 import Register from './Register/';
+import NotFound from './NotFound/';
 
 class App extends Component {
+    componentDidMount() {
+        this.unlisten = this.props.history.listen((location, action) => {
+            if (this.props.store.error !== '') {
+                this.props.actions.clearErrors();
+            }
+        });
+    }
+
+    componentWillUnmount() {
+        this.unlisten();
+    }
+
     render() {
         const {
             store: { isLoggedIn }
@@ -22,34 +35,34 @@ class App extends Component {
                 <Header />
 
                 <Switch>
-                    <React.Fragment>
-                        <Route exact path="/" component={Landing} />
-                        <PrivateRoute path="/dashboard" component={Dashboard} />
-                        <Route
-                            path="/login"
-                            render={() =>
-                                isLoggedIn ? (
-                                    <Redirect to="/dashboard" />
-                                ) : (
-                                    <Login />
-                                )
-                            }
-                        />
-                        <Route
-                            path="/register"
-                            render={() =>
-                                isLoggedIn ? (
-                                    <Redirect to="/dashboard" />
-                                ) : (
-                                    <Register />
-                                )
-                            }
-                        />
-                    </React.Fragment>
+                    <Route exact path="/" component={Landing} />
+                    <PrivateRoute path="/dashboard" component={Dashboard} />
+                    <Route
+                        path="/login"
+                        render={() =>
+                            isLoggedIn ? (
+                                <Redirect to="/dashboard" />
+                            ) : (
+                                <Login />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/register"
+                        render={() =>
+                            isLoggedIn ? (
+                                <Redirect to="/dashboard" />
+                            ) : (
+                                <Register />
+                            )
+                        }
+                    />
+
+                    <NotFound />
                 </Switch>
             </div>
         );
     }
 }
 
-export default withState(App);
+export default withRouter(withState(App));

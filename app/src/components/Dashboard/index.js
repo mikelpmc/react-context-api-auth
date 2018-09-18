@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+
 import withState from './../../utils/withState';
+
+import './index.css';
 
 class Dashboard extends Component {
     componentDidMount() {
@@ -10,17 +13,18 @@ class Dashboard extends Component {
         const { user } = this.props.store;
 
         return (
-            <React.Fragment>
-                <h1>Dashboard</h1>
+            <div className="dashboard">
+                <h1 className="dashboard__title">Dashboard</h1>
+
                 {Object.keys(user).length > 0 ? (
-                    <React.Fragment>
+                    <div className="dashboard__info">
                         <p>Name: {user.name || 'No name'}</p>
                         <p>Email: {user.email || 'No email'}</p>
-                    </React.Fragment>
+                    </div>
                 ) : (
                     'Loading user info...'
                 )}
-            </React.Fragment>
+            </div>
         );
     }
 }

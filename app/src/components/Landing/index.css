@@ -1,0 +1,27 @@
+.landing {
+    display: grid;
+    justify-content: center;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.landing__title {
+    font-size: 2.5em;
+}
+
+.landing__button {
+    padding: 10px;
+    min-width: 200px;
+    border: 5px solid darkblue;
+    margin: 5px;
+    color: darkslategrey;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.landing__button:hover {
+    color: white;
+    background-color: black;
+}

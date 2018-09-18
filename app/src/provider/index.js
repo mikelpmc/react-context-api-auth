@@ -20,7 +20,8 @@ class AuthProvider extends Component {
             onRegister: this.onRegister,
             onLogin: this.onLogin,
             onLogout: this.onLogout,
-            retrieveUser: this.retrieveUser
+            retrieveUser: this.retrieveUser,
+            clearErrors: this.clearErrors
         };
     }
 
@@ -58,7 +59,10 @@ class AuthProvider extends Component {
             .login(email, password)
             .then(() => {
                 this.setState({
-                    isLoggedIn: true
+                    isLoggedIn: true,
+                    email: '',
+                    name: '',
+                    password: ''
                 });
             })
             .catch(({ message }) => {
@@ -82,6 +86,12 @@ class AuthProvider extends Component {
             this.setState({
                 user
             });
+        });
+    };
+
+    clearErrors = () => {
+        this.setState({
+            error: ''
         });
     };
 

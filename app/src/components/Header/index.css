@@ -1,0 +1,27 @@
+.navbar {
+    list-style: none;
+    display: flex;
+    background-color: black;
+    box-shadow: 5px solid darkslategray;
+    margin: 0;
+}
+
+.navbar__item {
+    padding: 10px;
+    margin-left: 5px;
+    font-size: 1.5em;
+    transition: box-shadow 0.3s;
+}
+
+.navbar__item:hover {
+    box-shadow: inset 0 -4px 0 0 white;
+}
+
+.navbar__item a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.navbar__item--right {
+    margin-left: auto;
+}
