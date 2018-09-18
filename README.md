@@ -80,7 +80,7 @@ $ touch .env
 REACT_APP_API_BASE_URL=http:localhost:5000/api
 ```
 
-\*Note: In order to enviroment variables work with this react project without touching any config file they all have to start with **REACT*APP***
+\*Note: In order to enviroment variables work with this react project without touching any config file they all have to start with **REACT_APP\***
 
 3. Start the app
 
