@@ -1,6 +1,6 @@
 # React Context API Demo
 
-Basic demo to show the usage of the React context API with authenticate flow
+Basic demo to show the usage of the React context API with authentication flow
 
 Project Structure:
 
@@ -77,7 +77,7 @@ $ touch .env
 .env
 
 ```sh
-REACT_APP_API_BASE_URL=http:localhost:5000/api
+REACT_APP_API_BASE_URL=http://localhost:5000/api
 ```
 
 \*Note: In order to enviroment variables work with this react project without touching any config file they all have to start with \*\*REACT_APP\*\*
