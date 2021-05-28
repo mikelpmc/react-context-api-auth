@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import AuthProvider from './provider/provider';
+import App from './App';
 import 'normalize.css';
 import './index.css';
-
-import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
-
-import AuthProvider from './provider/';
 
 ReactDOM.render(
     <AuthProvider>
@@ -18,5 +14,3 @@ ReactDOM.render(
     </AuthProvider>,
     document.getElementById('root')
 );
-
-registerServiceWorker();
