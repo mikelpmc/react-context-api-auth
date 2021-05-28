@@ -36,6 +36,7 @@ input[type='password'] {
 }
 
 .register__button {
+    cursor: pointer;
     padding: 10px;
     min-width: 200px;
     border: 5px solid darkblue;

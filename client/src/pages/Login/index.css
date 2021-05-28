@@ -35,6 +35,7 @@ input[type='password'] {
 }
 
 .login__button {
+    cursor: pointer;
     padding: 10px;
     min-width: 200px;
     border: 5px solid darkblue;
