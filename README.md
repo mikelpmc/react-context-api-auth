@@ -5,7 +5,7 @@ Basic demo to show the usage of the React context API with authentication flow
 Project Structure:
 
 ```sh
-    -api
+    -server
         -src
             -data
                 -schemas
@@ -15,13 +15,15 @@ Project Structure:
         -index.js
         -.env
 
-    -app
+    -client
         -public
         -src
             -components
-            -logic
-            -provider
+            -pages
+            -providers
+            -services
             -utils
+            -App.js
             -index.js
         -.env
 ```
@@ -39,7 +41,7 @@ Server:
 $ npm i
 ```
 
-2. Create the .env file on the root of the api/ folder
+2. Create the .env file on the root of the server/ folder
 
 ```sh
 $ touch .env
@@ -54,7 +56,7 @@ TOKEN_SECRET=your-secret
 TOKEN_EXP=3h
 ```
 
-3. Start the API
+3. Start the Server
 
 ```sh
 $ npm start
@@ -68,7 +70,7 @@ Client:
 $ npm i
 ```
 
-2. Create the .env file on the root of the app/ folder
+2. Create the .env file on the root of the client/ folder
 
 ```sh
 $ touch .env
@@ -82,7 +84,7 @@ REACT_APP_API_BASE_URL=http://localhost:5000/api
 
 \*Note: In order to enviroment variables work with this react project without touching any config file they all have to start with \*\*REACT_APP\*\*
 
-3. Start the app
+3. Start the client
 
 ```sh
 $ npm start
