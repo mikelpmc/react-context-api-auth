@@ -1,0 +1,54 @@
+.register {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 0.5fr 1fr;
+    grid-gap: 1px 1px;
+    grid-template-areas: 'register__title' 'register__error' 'register__form';
+    text-align: center;
+    padding: 50px;
+}
+
+.register__title {
+    grid-area: register__title;
+}
+
+.register__form {
+    grid-area: register__form;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.register__error {
+    grid-area: register__error;
+    color: tomato;
+    font-size: 1.5em;
+}
+
+.register__button {
+    cursor: pointer;
+    padding: 10px;
+    min-width: 200px;
+    border: 5px solid darkblue;
+    margin: 5px;
+    color: darkslategrey;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.register__button:hover {
+    color: white;
+    background-color: black;
+}
