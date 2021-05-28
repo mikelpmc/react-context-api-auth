@@ -20,7 +20,9 @@ const Header = () => {
                                 <Link to="/dashboard">Dashboard</Link>
                             </li>
                             <li className="navbar__item navbar__item--right">
-                                <button onClick={onLogout}>Logout</button>
+                                <button type="button" onClick={onLogout}>
+                                    Logout
+                                </button>
                             </li>
                         </Fragment>
                     ) : (

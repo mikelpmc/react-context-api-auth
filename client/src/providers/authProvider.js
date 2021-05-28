@@ -36,9 +36,12 @@ const EVENTS = {
             error
         };
     },
-    [EVENT_TYPES.LOGOUT]: state => {
+    [EVENT_TYPES.LOGOUT]: () => {
         return {
-            ...state,
+            name: '',
+            email: '',
+            password: '',
+            error: '',
             isLoggedIn: false
         };
     },
