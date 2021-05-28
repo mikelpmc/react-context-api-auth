@@ -9,7 +9,6 @@ const EVENT_TYPES = {
     LOGIN_SUCCESS: 'login_success',
     LOGIN_ERROR: 'login_error',
     LOGOUT: 'logout',
-    RETRIEVE_USER: 'retrieve_user',
     CLEAR_ERRORS: 'clear_errors',
     ERROR: 'error'
 };
@@ -21,13 +20,6 @@ const EVENTS = {
         return {
             ...state,
             [name]: value
-        };
-    },
-    [EVENT_TYPES.RETRIEVE_USER]: (state, event) => {
-        const { user } = event.payload;
-        return {
-            ...state,
-            user
         };
     },
     [EVENT_TYPES.LOGIN_SUCCESS]: state => {
@@ -67,7 +59,6 @@ const EVENTS = {
 
 const INITIAL_STATE = {
     isLoggedIn: AuthService.isLoggedIn(),
-    user: {},
     name: '',
     email: '',
     password: '',
@@ -121,29 +112,12 @@ const AuthProvider = ({ children }) => {
         });
     };
 
-    const handleRetrieveUser = () => {
-        AuthService.retrieveUser()
-            .then(user => {
-                dispatch({
-                    type: EVENT_TYPES.RETRIEVE_USER,
-                    payload: { user }
-                });
-            })
-            .catch(() => {
-                dispatch({
-                    type: EVENT_TYPES.ERROR,
-                    payload: { error: 'retrieve_user_error' }
-                });
-            });
-    };
-
     const handleClearErrors = () => {
         dispatch({ type: EVENT_TYPES.CLEAR_ERRORS });
     };
 
     const events = {
         onUpdate: handleUpdate,
-        onRetrieveUser: handleRetrieveUser,
         onRegister: handleRegister,
         onLogin: handleLogin,
         onLogout: handleLogout,

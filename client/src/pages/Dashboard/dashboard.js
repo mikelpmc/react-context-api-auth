@@ -1,26 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import useRetrieveUserQuery from './services/useRetrieveUserQuery';
 import './index.css';
-import { useAuthDispatch, useAuthState } from '../../providers/authProvider';
 
 const Dashboard = () => {
-    const { onRetrieveUser } = useAuthDispatch();
-    const { user } = useAuthState();
+    const { loading, error, data } = useRetrieveUserQuery();
 
-    useEffect(() => {
-        onRetrieveUser();
-    }, []);
+    if (loading) return <p>Loading user info...</p>;
+    if (error) return <p>Oops! something went wrong</p>;
+
+    const { name, email } = data;
 
     return (
         <section className="dashboard">
             <h1 className="dashboard__title">Dashboard</h1>
-            {user ? (
-                <div className="dashboard__info">
-                    <p>Name: {user.name}</p>
-                    <p>Email: {user.email}</p>
-                </div>
-            ) : (
-                'Loading user info...'
-            )}
+            <div className="dashboard__info">
+                <p>Name: {name}</p>
+                <p>Email: {email}</p>
+            </div>
         </section>
     );
 };
